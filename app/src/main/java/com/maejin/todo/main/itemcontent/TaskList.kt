@@ -14,12 +14,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.maejin.todo.domain.Task
+import com.maejin.todo.domain.model.Task
 
 @Composable
 fun TaskList(
     modifier: Modifier = Modifier,
-    onCheckedChange: (Int, Task) -> Unit,
+    onCheckedChange: (Task) -> Unit,
     tasks: List<Task>
 ) {
     LazyColumn(modifier = modifier.padding(8.dp)) {
@@ -27,7 +27,7 @@ fun TaskList(
             TaskItem(
                 task = tasks[index],
                 onCheckedChange = { isChecked ->
-                    onCheckedChange(index, tasks[index].copy(isChecked = isChecked))
+                    onCheckedChange(tasks[index].copy(isDone = isChecked))
                 },
                 modifier = Modifier.fillMaxWidth()
             )
@@ -46,13 +46,13 @@ private fun TaskItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Checkbox(
-            checked = task.isChecked,
+            checked = task.isDone,
             onCheckedChange = onCheckedChange
         )
         Text(
             text = task.content,
             modifier = Modifier.weight(1f),
-            style = if (task.isChecked) TextStyle(
+            style = if (task.isDone) TextStyle(
                 color = Color.Gray,
                 textDecoration = TextDecoration.LineThrough
             ) else TextStyle.Default
@@ -66,9 +66,9 @@ private fun TaskListPreview() {
     TaskList(
         tasks = listOf(
             Task(content = "Task 1"),
-            Task(content = "Task 2", isChecked = true),
+            Task(content = "Task 2", isDone = true),
             Task(content = "Task 3")
         ),
-        onCheckedChange = {_, _ -> },
+        onCheckedChange = {},
     )
 }

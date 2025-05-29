@@ -58,6 +58,10 @@ dependencies {
     implementation(libs.androidx.hilt.compose)
     kapt(libs.androidx.hilt.compiler)
 
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)

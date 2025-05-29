@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.maejin.todo.domain.Task
+import com.maejin.todo.domain.model.Task
 import com.maejin.todo.main.itemcontent.InputBox
 import com.maejin.todo.main.itemcontent.TaskList
 import com.maejin.todo.ui.theme.TodoTheme
@@ -42,8 +42,8 @@ fun MainScreen() {
                     .fillMaxWidth()
                     .weight(1f),
                 tasks = tasks.value,
-                onCheckedChange = { index, task ->
-                    viewModel.updateTask(index, task)
+                onCheckedChange = { task ->
+                    viewModel.updateTask(task)
                 }
             )
             InputBox (
