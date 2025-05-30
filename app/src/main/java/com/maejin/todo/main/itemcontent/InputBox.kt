@@ -8,13 +8,16 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.maejin.todo.ui.theme.Serenity
 
 @Composable
 fun InputBox(
@@ -33,7 +36,14 @@ fun InputBox(
                 .height(60.dp)
                 .weight(1f, true)
                 .background(Color.White),
-            placeholder = { Text("Enter your task") }
+            placeholder = { Text("Enter your task") },
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = Color.White,
+                focusedIndicatorColor = Serenity,
+                unfocusedIndicatorColor = Serenity,
+                cursorColor = Serenity
+            ),
             keyboardActions = KeyboardActions(
                 onDone = { onClick() }
             )
@@ -46,7 +56,11 @@ fun InputBox(
                 .width(80.dp)
                 .height(60.dp),
             shape = RoundedCornerShape(5.dp),
-            onClick = onClick
+            onClick = onClick,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Serenity,
+                contentColor = Color.White
+            )
         ) {
             Text("ADD")
         }
