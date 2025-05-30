@@ -29,4 +29,10 @@ class MainViewModel @Inject constructor(
             taskRepository.updateTask(task)
         }
     }
+
+    fun deleteTask(task: Task) {
+        viewModelScope.launch {
+            taskRepository.deleteTask(task)
+        }
+    }
 }
