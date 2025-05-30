@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -31,6 +32,8 @@ fun MainScreen() {
 
         val tasks: State<List<Task>> = viewModel.tasks.collectAsStateWithLifecycle()
         val (text, onTextChange) = remember { mutableStateOf("") }
+
+        val keyboardController = LocalSoftwareKeyboardController.current
 
         Column (
             modifier = Modifier.fillMaxSize()
@@ -55,6 +58,7 @@ fun MainScreen() {
                 onClick = {
                     viewModel.addTask(Task(content = text))
                     onTextChange("")
+                    keyboardController?.hide()
                     Toast.makeText(context, "Task added: $text", Toast.LENGTH_SHORT).show()
                 }
             )

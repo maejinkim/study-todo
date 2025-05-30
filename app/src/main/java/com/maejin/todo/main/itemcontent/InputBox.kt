@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -26,12 +27,16 @@ fun InputBox(
 
         OutlinedTextField(
             value = text,
+            singleLine = true,
             onValueChange = onTextChange,
             modifier = Modifier
                 .height(60.dp)
                 .weight(1f, true)
                 .background(Color.White),
             placeholder = { Text("Enter your task") }
+            keyboardActions = KeyboardActions(
+                onDone = { onClick() }
+            )
         )
 
         Spacer(modifier = Modifier.width(8.dp))
